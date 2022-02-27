@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmoriModTool", "OmoriModTool\OmoriModTool.csproj", "{DC347718-ACDA-4EAB-A916-120FB90C4A9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D12E1B8E-482D-4D53-AAFC-7EE7C6ED97CF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC347718-ACDA-4EAB-A916-120FB90C4A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC347718-ACDA-4EAB-A916-120FB90C4A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC347718-ACDA-4EAB-A916-120FB90C4A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC347718-ACDA-4EAB-A916-120FB90C4A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CAFDC64-BB4C-4442-B4BA-3ABAB9D0AF31}
+	EndGlobalSection
+EndGlobal
