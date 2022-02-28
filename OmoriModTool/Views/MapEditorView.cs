@@ -15,7 +15,8 @@ namespace OmoriModTool.Views
             }
 
             ImGui.Begin("Map Editor");
-            ImGui.Image(OmoriModTool.instance.guiRenderer.BindTexture(mapTexture), new System.Numerics.Vector2(mapTexture.Width, mapTexture.Height));
+            ImGui.Image(OmoriModTool.instance.guiRenderer.BindTexture(OmoriModTool.instance.tileMapRenderTarget), 
+                new System.Numerics.Vector2(OmoriModTool.instance.tileMapRenderTarget.Width, OmoriModTool.instance.tileMapRenderTarget.Height));
             ImGui.End();
         }
     }

@@ -11,10 +11,7 @@
   <ItemGroup>
     <PackageReference Include="ImGui.NET" Version="1.87.2" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Core\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>

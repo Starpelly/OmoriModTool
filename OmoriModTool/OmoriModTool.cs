@@ -12,8 +12,11 @@ namespace OmoriModTool
     {
         public static OmoriModTool instance;
         private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
         public ImGuiRenderer guiRenderer;
         private EditorLayer editorLayer;
+        private TileMapView tileMapView;
+        public RenderTarget2D tileMapRenderTarget;
 
         public OmoriModTool() :base()
         {
@@ -38,9 +41,21 @@ namespace OmoriModTool
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             guiRenderer = new ImGuiRenderer(this);
             guiRenderer.RebuildFontAtlas();
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
+
+            Core.TileMap tileMap = Newtonsoft.Json.JsonConvert.DeserializeObject<Core.TileMap>(File.ReadAllText(@"C:\Program Files (x86)\Steam\steamapps\common\OMORI\www_decrypt\maps\map6.json"));
+            tileMap.source = @"C:\Program Files (x86)\Steam\steamapps\common\OMORI\www_decrypt\maps\map6.json";
+
+            for (int i = 0; i < tileMap.tilesets.Count; i++)
+            {
+                Console.WriteLine(tileMap.layers[i].y);
+            }
+
+            tileMapView = new TileMapView(tileMap);
         }
 
         protected override void UnloadContent()
@@ -55,7 +70,18 @@ namespace OmoriModTool
 
         protected override void Draw(GameTime gameTime)
         {
+            UpdateTileMapRenderTarget(tileMapView.TileMap.width * tileMapView.TileMap.tilewidth, tileMapView.TileMap.height * tileMapView.TileMap.tileheight);
+            GraphicsDevice.SetRenderTarget(tileMapRenderTarget);
             GraphicsDevice.Clear(Color.Gray);
+
+            spriteBatch.Begin();
+
+            tileMapView.Draw(spriteBatch, GraphicsDevice);
+
+            spriteBatch.End();
+
+            GraphicsDevice.SetRenderTarget(null);
+
 
             guiRenderer.BeforeLayout(gameTime);
 
@@ -64,6 +90,20 @@ namespace OmoriModTool
             guiRenderer.AfterLayout();
 
             base.Draw(gameTime);
+        }
+
+        public void UpdateTileMapRenderTarget(int width, int height)
+        {
+            if (tileMapRenderTarget != null)
+                tileMapRenderTarget.Dispose();
+
+            tileMapRenderTarget = new RenderTarget2D(
+                GraphicsDevice,
+                width,
+                height,
+                false,
+                GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
         }
     }
 }
